@@ -1,201 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
 
-	<!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!-- Force latest available IE rendering engine and Chrome Frame (if installed) -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Gradients</title>
-	<meta name="description" content="Gradients">
+  <title>Gradients</title>
+  <meta name="description" content="Gradients">
     <meta name="author" content="Nathaniel Foster">
 
-	<!-- Mobile Screen Resizing -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0">
+  <!-- Mobile Screen Resizing -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0">
 
-	<!-- icons for mobile devices -->
-	<link rel="apple-touch-icon" href="img/apple-touch-icon-57.png">
-	<link rel="apple-touch-icon" sizes="72x72"   href="img/apple-touch-icon-72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152.png">
+  <!-- icons for mobile devices -->
+  <link rel="apple-touch-icon" href="img/apple-touch-icon-57.png">
+  <link rel="apple-touch-icon" sizes="72x72"   href="img/apple-touch-icon-72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152.png">
 
-	<!-- stylesheet -->
-	<link rel="stylesheet" href="css/libs/kraken.css" type="text/css">
-	<link rel="stylesheet" href="css/libs/spectrum.css">
-	<link rel="stylesheet" href="css/font.css">
-	<link rel="stylesheet" href="css/libs/astro-navbar-plus-css.css" type="text/css">
-	<link rel="stylesheet" href="css/gradients.css">
-	<!-- HTML5 Shim for IE 6-8 -->
-	<!--[if lt IE 9]>
-	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="css/libs/kraken.css" type="text/css">
+  <link rel="stylesheet" href="css/libs/spectrum.css">
+  <link rel="stylesheet" href="css/font.css">
+  <link rel="stylesheet" href="css/libs/astro-navbar-plus-css.css" type="text/css">
+  <link rel="stylesheet" href="css/gradients.css">
+  <!-- HTML5 Shim for IE 6-8 -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-	<!-- Feature Test For Navigation -->
-	<script>
-		if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
-			document.documentElement.className += 'js';
-		}
-	</script>
+  <!-- Feature Test For Navigation -->
+  <script>
+    if ( 'querySelector' in document && 'addEventListener' in window && Array.prototype.forEach ) {
+      document.documentElement.className += 'js';
+    }
+  </script>
   </head>
 
   <body ng-controller="ColorCtrl" ng-init="init()" style="background: {{bgImage}} background-size: {{bgSize}}">
 
-	<!--[if lt IE 9]>
-		<section class="container">
-			Did you know that your web browser is a bit old? Some of the content on this site might not work right as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, better, and safer web experience.
-		</section>
-	<![endif]-->
+  <!--[if lt IE 9]>
+    <section class="container">
+      Did you know that your web browser is a bit old? Some of the content on this site might not work right as a result. <a href="http://whatbrowser.org">Upgrade your browser</a> for a faster, better, and safer web experience.
+    </section>
+  <![endif]-->
 
-	<div id="main_content" >
-		<div class="header">
-			<nav class="nav-wrap">
-				<a class="logo" href="/index.html">Nathaniel Foster</a>
-				<a class="nav-toggle" data-target="#nav-menu" href="#">Menu ▼</a>
-				<div class="nav-collapse" id="nav-menu">
-					<ul class="nav">
-						<li><a class="icon-home" href="index.html"> Home</a></li>
-						<li><a class="icon-lab" href="gradients.html"> Lab</a></li>
-						<li><a class="icon-profile" href="software_developer.html"> Resume</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
-		<div id="control-panel" class="control-panel flip-container" >
-			<div class="row row-start-xsmall app-header">
-				<div class="grid-fourth">
-					<a class="btn" ng-click="showCSS()"><span class="icon-css3"></span> CSS3</a>
-				</div>
-				<div class="grid-half app-title">CSS3 Gradients</div>
-				<div class="grid-fourth">
-					<label class="btn" for="cbxVisible">
-						<input id="cbxVisible" type="checkbox" ng-model="isVisible" />
-						<span class="{{iconDisplay}}"></span> {{displayToggle}}
-					</label>
-				</div>
-			</div>
-			<div class="flipper" style="display:{{display}}">
-				<div id="front" class="front">
-					<div class="layer-tabs row row-start-xsmall">
-						<span class="grid-fourth">
-							<span class="layers-title">Layer</span>
-						</span>
-						<span class="grid-half">
-							<a class="btn-add-layer icon-plus" ng-click="addLayer()"></a>
-						</span>
-						<span  class="grid-fourth">
-							<a type="button" class="btn-delete icon-cancel-circle" ng-click="removeLayer($index)"></a>
-						</span>
-					</div>
-					<div class="layer-tabs row row-start-xsmall">
-						<span class="grid-full">
-							<ul class="layers">
-								<!-- need to add something to check if layer is selected, show selection by changing css  -->
-								<li class="layer-tab" ng-repeat="layer in layers" ng-click="changeLayer($index)">
-									<span class="layer-preview-bg">
-										<span class="layer-preview" style="background: {{layerGradients[$index]}}" >{{$index}}</span>
-									</span>
-								</li>
+  <div id="main_content" >
+    <div class="header">
+      <nav class="nav-wrap">
+        <a class="logo" href="/index.html">Nathaniel Foster</a>
+        <a class="nav-toggle" data-target="#nav-menu" href="#">Menu ▼</a>
+        <div class="nav-collapse" id="nav-menu">
+          <ul class="nav">
+            <li><a class="icon-home" href="index.html"> Home</a></li>
+            <li><a class="icon-lab" href="gradients.html"> Lab</a></li>
+            <li><a class="icon-profile" href="software_developer.html"> Resume</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="control-panel" class="control-panel flip-container" >
+      <div class="row row-start-xsmall app-header">
+        <div class="grid-fourth">
+          <a class="btn" ng-click="showCSS()"><span class="icon-css3"></span> CSS3</a>
+        </div>
+        <div class="grid-half app-title">CSS3 Gradients</div>
+        <div class="grid-fourth">
+          <label class="btn" for="cbxVisible">
+            <input id="cbxVisible" type="checkbox" ng-model="isVisible" />
+            <span class="{{iconDisplay}}"></span> {{displayToggle}}
+          </label>
+        </div>
+      </div>
+      <div class="flipper" style="display:{{display}}">
+        <div id="front" class="front">
+          <div class="layer-tabs row row-start-xsmall">
+            <span class="grid-fourth">
+              <span class="layers-title">Layer</span>
+            </span>
+            <span class="grid-half">
+                   <a class="btn-add-layer icon-plus" ng-click="layer.add()"></a>
+            </span>
+            <span  class="grid-fourth">
+              <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.remove($index)"></a>
+            </span>
+          </div>
+          <div class="layer-tabs row row-start-xsmall">
+            <span class="grid-full">
+              <ul class="layers">
+                <!-- need to add something to check if layer is selected, show selection by changing css  -->
+                <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)">
+                  <span class="layer-preview-bg">
+                    <span class="layer-preview" style="background: {{lyr.gradient}}" >{{$index}}</span>
+                  </span>
+                </li>
+              </ul>
+            </span>
+          </div>
+          <div class="row row-start-xsmall">
+            <div class="grid-half">
+              <label class="button" for="cbxDirection">
+                <input id="cbxDirection" type="checkbox" name="gradient" ng-model="layer.current.isRadial" ng-change="changeDirection()" />
+                <span class="{{iconDirection}}"></span>
+                {{nameDirection}}
+              </label>
+            </div>
+            <div class="grid-half">
+              <label class="button" for="cbxRepeating">
+                <input id="cbxRepeating" name="cbxRepeating" type="checkbox" ng-model="layer.current.isRepeating" />
+                {{nameRepeating}}
+              </label>
+            </div>
+          </div>
+          <div class="size">
+            <div class="row row-start-xsmall">
+              <div class="grid-full">
+              <span> Size: {{size.val}} </span>
+              <label class="button button-small" for="cbxSizeMeasurement">
+                <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
+                {{size.measurement}}
+              </label>
+            </div>
+            </div>
+            <div class="row row-start-xsmall range">
+              <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="size.minus()" value="-"></a>
+              <input type="range" class="grid-half ctrl-range inp-range" ng-model="size.val" min="0" max="100"></input>
+              <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="size.plus()" value="+"></a>
+            </div>
+          </div>
+          <div class="angle" style="display:{{displayAngle}}">
+            <div class="row row-start-xsmall">
+              <div class="grid-full">
+              <span> Angle: {{layer.current.angle.val}} </span>
+            </div>
+            </div>
+            <div class="row row-start-xsmall range">
+              <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="layer.current.angle.minus()" value="-"></a>
+              <input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.current.angle.val" min="0" max="360"></input>
+              <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="layer.current.angle.plus()" value="+"></a>
+            </div>
+          </div>
+          <ul id="list-colors" class="list-colors"  >
+            <li ng-repeat="color in layer.current.color.list" class="row-big">
+              <div class="row row-start-xsmall color-row1" >
+                <div class="grid-fourth" >
+                  <div class="color-picker">
+                    <ui-colorpicker ng-model="color.val"></ui-colorpicker>
+                  </div>
+                </div>
+                <div class="color-position grid-half">
+                  <span>{{color.percentage.val}}%</span>
+                </div>
+                <div  class="grid-fourth delete">
+                  <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"></a>
+                </div>
+              </div>
+              <div class="row row-start-xsmall range">
+                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="color.percentage.minus($index)"></a>
+                <input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage.val"/>
+                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="color.percentage.plus($index)"></a>
+              </div>
+            </li>
+          </ul>
+          <div class="row" >
+            <a type="button" class="button" ng-click="layer.current.color.add()">
+              <span class="icon-plus"></span>
+              ADD COLOR
+            </a>
+          </div>
+        </div>
+        <div id="back"  class="back">
+          <div class="code-display">
+            <ul>
+              <li ng-repeat="bg in cssBg" class="cssBg">
+                <div class="cssBackground"><span>background: {{bg}}</span></div>
+              </li>
+            </ul>
+            <div class="cssBackgroundSize"><span>background-size: {{bgSize}}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-							</ul>
-						</span>
-					</div>
-					<div class="row row-start-xsmall">
-						<div class="grid-half">
-							<label class="button" for="cbxDirection">
-								<input id="cbxDirection" type="checkbox" name="gradient" ng-model="layer.isRadial" ng-change="changeDirection()" />
-								<span class="{{iconDirection}}"></span>
-								{{nameDirection}}
-							</label>
-						</div>
-						<div class="grid-half">
-							<label class="button" for="cbxRepeating">
-								<input id="cbxRepeating" name="cbxRepeating" type="checkbox" ng-model="layer.isRepeating" />
-								{{nameRepeating}}
-							</label>
-						</div>
-					</div>
-					<div class="size">
-						<div class="row row-start-xsmall">
-							<div class="grid-full">
-							<span> Size: {{layer.size}} </span>
-							<label class="button button-small" for="cbxSizeMeasurement">
-								<input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="isPercentage"></input>
-								{{layer.measurement}}
-							</label>
-						</div>
-						</div>
-						<div class="row row-start-xsmall range">
-							<a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="sizeMinus()" value="-"></a>
-							<input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.size" min="0" max="100"></input>
-							<a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="sizePlus()" value="+"></a>
-						</div>
-					</div>
-					<div class="rotation" style="display:{{displayAngle}}">
-						<div class="row row-start-xsmall">
-							<div class="grid-full">
-							<span> Angle: {{layer.angle}} </span>
-						</div>
-						</div>
-						<div class="row row-start-xsmall range">
-							<a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="angleMinus()" value="-"></a>
-							<input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.angle" min="0" max="360"></input>
-							<a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="anglePlus()" value="+"></a>
-						</div>
-					</div>
-					<ul id="list-colors" class="list-colors"  >
-						<li ng-repeat="color in layer.colors" class="row-big">
-							<div class="row row-start-xsmall color-row1" >
-								<div class="grid-fourth" >
-									<div class="color-picker">
-										<ui-colorpicker ng-model="color.val"></ui-colorpicker>
-									</div>
-								</div>
-								<div class="color-position grid-half">
-									<span>{{color.percentage}}%</span>
-								</div>
-								<div  class="grid-fourth delete">
-									<a type="button" class="btn-delete icon-cancel-circle" ng-click="removeColor($index)"></a>
-								</div>
-							</div>
-							<div class="row row-start-xsmall range">
-								<a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="positionMinus($index)"></a>
-								<input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage"/>
-								<a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="positionPlus($index)"></a>
-							</div>
-						</li>
-					</ul>
-					<div class="row" >
-						<a type="button" class="button" ng-click="addColor()">
-							<span class="icon-plus"></span>
-							ADD COLOR
-						</a>
-					</div>
-				</div>
-				<div id="back"  class="back">
-					<div class="code-display">
-						<ul>
-							<li ng-repeat="bg in cssBg" class="cssBg">
-								<div class="cssBackground"><span>background: {{bg}}</span></div>
-							</li>
-						</ul>
-						<div class="cssBackgroundSize"><span>background-size: {{bgSize}}</span></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script src="js/libs/jquery-1.9.1.min.js"></script>
-	<script src="js/libs/spectrum.js"></script>
-	<script src="js/libs/angular.min.js"></script>
-	<script src="js/libs/angular-touch.min.js"></script>
-	<script src="js/libs/kraken.js"></script>
-	<script src="js/libs/buoy.js"></script>
-	<script src="js/libs/astro-plus.js"></script>
-	<script src="js/libs/json2.min.js"></script>
-	<script src="js/gradients.js"></script>
+  <script src="js/libs/jquery-1.9.1.min.js"></script>
+  <script src="js/libs/spectrum.js"></script>
+  <script src="js/libs/angular.min.js"></script>
+  <script src="js/libs/angular-touch.min.js"></script>
+  <script src="js/libs/kraken.js"></script>
+  <script src="js/libs/buoy.js"></script>
+  <script src="js/libs/astro-plus.js"></script>
+  <script src="js/libs/json2.min.js"></script>
+  <script src="js/gradients.js"></script>
 
   </body>
 </html>
