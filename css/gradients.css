@@ -1,3 +1,7 @@
+/* Title: Gradients.css */
+/* Author: Nathaniel Foster */
+/* email: nate@nfoster.net */
+
 body, html {
 	min-width: 100%;
 	height: 100%;
@@ -53,6 +57,41 @@ ul {
 	font-size:1.25em;
 }
 
+.layer-preview-bg {
+	border: 1px solid rgb(128, 128, 128);
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+	display: inline-block;
+	vertical-align: middle;
+	width: 3rem;
+	height: 3rem;
+}
+
+.layer-preview {
+	display: inline-block;
+	vertical-align: middle;
+	width: 3rem;
+	height: 3rem;
+}
+
+.layers-title {
+	display: inline;
+	vertical-align: middle;
+}
+
+.layers {
+/* 	display: inline; */
+	text-align: left;
+}
+
+.layer-tabs {
+	margin: .5em 0;
+}
+
+.layer-tab {
+	display: inline;
+	text-align: center;
+}
+
 .button {
 	background-color: rgba(45, 45, 45, 0.5);
 	background: -moz-linear-gradient(top, rgba(100,100,100,0.5) 0%, rgba(0,0,0,0.7) 100%); /* FF3.6+ */
@@ -83,10 +122,18 @@ ul {
 	width: 1em;
 }
 
+.range {
+	border: 1px solid rgb(128, 128, 128);
+	width: 95%;
+	margin: auto auto .2em;
+}
+
 .ctrl-range {
-	vertical-align: middle;
 	height: 2rem;
 	line-height: 2rem;
+	margin-top: .25em;
+	margin-bottom: .25em;
+	vertical-align: middle;
 }
 
 .btn-range, .btn-range:hover{
