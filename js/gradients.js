@@ -2,6 +2,7 @@
 //  Author:  Nathaniel Foster
 //  Website:  nfoster.net
 //  Email: nate@nfoster.net
+//  Version: 1.2
 
 //  The MIT License (MIT)
 //
