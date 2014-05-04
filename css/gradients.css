@@ -21,6 +21,10 @@ ul {
 	margin: 0;
 }
 
+a {
+	color : rgb(200, 200, 200);
+}
+
 .header {
 	background: rgba(45,45,45,1);
 	border-bottom: 2px solid rgba(0,0,0,0.7);
@@ -103,7 +107,7 @@ ul {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80646464', endColorstr='#b3000000',GradientType=0 ); /* IE6-9 */
 	border: 1px solid rgb(128, 128, 128);
 	color: white;
-	cursor: pointer; 
+	cursor: pointer;
 	display: block;
 	margin: .25em auto;
 	padding: .5em;
@@ -140,7 +144,7 @@ ul {
 	border: none;
 	color: rgba(200, 200, 200, 1);
 	display: inline-block;
-	text-shadow: 0  1px rgba(0, 0, 0, 0.5), 
+	text-shadow: 0  1px rgba(0, 0, 0, 0.5),
 				 0 -1px rgba(225, 225, 225, 0.5);
 }
 
@@ -176,7 +180,7 @@ ul {
 	color: rgb(200, 200, 200);
 	display: inline-block;
 	margin-right: .5em;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.5), 
+	text-shadow: 0 1px rgba(0, 0, 0, 0.5),
 				 0 -1px rgba(255, 255, 255, 0.5);
 }
 
@@ -211,7 +215,7 @@ ul {
 	     -o-transition: 0.6s;
 		-ms-transition: 0.6s;
 	     	transition: 0.6s;
-	     	
+
 	-webkit-transform-style: preserve-3d;
 	   -moz-transform-style: preserve-3d;
 		 -o-transform-style: preserve-3d;
@@ -262,7 +266,7 @@ background: -webkit-linear-gradient(158deg,rgb(255, 133, 0) 0%,rgb(255, 255, 32)
 background: -webkit-linear-gradient(68deg, rgba(245, 255, 0, 0.5) 50%,rgba(255, 255, 255, 0) 50%),-webkit-linear-gradient(158deg, rgba(20, 0, 255, 0.5) 50%,rgba(255, 255, 255, 0) 50%),-webkit-linear-gradient(68deg, rgba(255, 255, 255, 0) 50%,rgba(13, 245, 3, 0.5) 50%),-webkit-linear-gradient(158deg, rgba(255, 0, 0, 0.5) 50%,rgba(255, 0, 0, 0) 50%),-webkit-linear-gradient(rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0.5));
 background: -webkit-linear-gradient(68deg, rgba(0, 255, 0, 0.6) 25%,rgba(255, 0, 0, 0.61) 75%),-webkit-linear-gradient(158deg, #8B99FF 40%,#FFF96E 60%);
  */
- 
+
  /* waves
  background: -webkit-linear-gradient(rgba(0, 0, 0, 0) 40%, rgb(4, 0, 107) 100%), -webkit-radial-gradient(50% -10% , 100% 105%, rgb(4, 0, 109), rgba(0, 0, 73, 0.9) 55%, rgba(4, 0, 109, 0.1) 100%),-webkit-linear-gradient(rgb(4, 0, 107) 0%, rgb(255, 255, 255) 50%, rgb(255, 255, 255) 100%);
  */
