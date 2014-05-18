@@ -207,6 +207,7 @@ app.controller('ColorCtrl', function($scope) {
 	$scope.resetApp = function() {
 		$scope.layer.list = [];
 		$scope.layer.list[0] = LAYER1;
+		$scope.layer.change(0);
 	};
 
 	$scope.size = {
