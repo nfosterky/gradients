@@ -115,7 +115,7 @@ SOFTWARE.
                    <a class="btn-add-layer icon-plus" ng-click="layer.add()"></a>
             </span>
             <span  class="grid-fourth">
-              <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.remove($index)"></a>
+              <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.remove($index)" style="display:{{layer.display.btnRemove}}"></a>
             </span>
           </div>
           <div class="layer-tabs row row-start-xsmall">
@@ -185,7 +185,8 @@ SOFTWARE.
                   <span>{{color.percentage.val}}%</span>
                 </div>
                 <div  class="grid-fourth delete">
-                  <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"></a>
+                  <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"
+                     style="display:{{layer.current.color.display.btnRemove}}"></a>
                 </div>
               </div>
               <div class="row row-start-xsmall range">
