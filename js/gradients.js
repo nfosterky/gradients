@@ -47,7 +47,6 @@ var Color = function(val, percentage) {
 var Layer = function(opt) {
 	var layer = {
 		id: opt.id ? opt.id : 0,
-		fun: function() {console.log("fun")},
 		gradientDirection: "linear",
 		angle: {
 			val: opt.angle ? opt.angle : 45, //getRandomInt(0,360),
@@ -63,13 +62,16 @@ var Layer = function(opt) {
 		gradientDirection: opt.isRadial ? "radial" : "linear",
 		color: {
 			list: opt.colors ? opt.colors : LAYER1_COLORS,
+			display : {
+				btnRemove : "none"
+			},
 			add: function () {
-
 				this.list.push(new Color("#ff0000", 100));
+				this.display.btnRemove = (this.list.length > 2) ? "block" : "none";
 			},
 			remove: function (index) {
-				console.log("remove color");
 				this.list.splice(index, 1);
+				this.display.btnRemove = (this.list.length > 2) ? "block" : "none";
 			}
 		}
 	}
@@ -195,7 +197,6 @@ app.controller('ColorCtrl', function($scope) {
 	$scope.isVisible = true;
 	$scope.displayAngleControl = "block";
 
-
 	$scope.size = {
 		val: 75,
 		isPercentage: false,
@@ -212,6 +213,9 @@ app.controller('ColorCtrl', function($scope) {
 		index: 0,
 		list: [],
 		current: {},
+		display: {
+			btnRemove: "none"
+		},
 		add : function() {
 			var newIndex = this.list.length;
 
@@ -234,9 +238,10 @@ app.controller('ColorCtrl', function($scope) {
 			this.change(newIndex);
 		},
 		change : function(index) {
-			this.current = $scope.layer.list[index];
+			this.current = this.list[index];
 			this.current.index = index;
-		}
+			this.display.btnRemove = (this.list.length > 1) ? "block" : "none";
+ 		}
 	};
 
 	$scope.init = function () {
