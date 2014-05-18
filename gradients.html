@@ -109,10 +109,10 @@ SOFTWARE.
         <div id="front" class="front">
           <div class="layer-tabs row row-start-xsmall">
             <span class="grid-fourth">
-              <span class="layers-title">Layer</span>
+              <a class="button" id="btnReset" ng-click="resetApp()" >Reset</a>
             </span>
             <span class="grid-half">
-                   <a class="btn-add-layer icon-plus" ng-click="layer.add()"></a>
+                   <a class="btn-add-layer icon-plus" ng-click="layer.add()"> Layer</a>
             </span>
             <span  class="grid-fourth">
               <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.remove($index)" style="display:{{layer.display.btnRemove}}"></a>

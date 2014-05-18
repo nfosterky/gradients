@@ -44,6 +44,7 @@ var Color = function(val, percentage) {
 	}
 	return color;
 };
+
 var Layer = function(opt) {
 	var layer = {
 		id: opt.id ? opt.id : 0,
@@ -102,7 +103,13 @@ var LAYER1_COLORS = [
 		LAYER2_COLORS = [
 			new Color ("rgba(74, 255, 74, 0.3)", 50),
 			new Color ("rgba(246, 255, 0, 0.5)", 51)
-		];
+		],
+		LAYER1 = new Layer({
+												id: 0,
+												colors: LAYER1_COLORS,
+												isRadial: true,
+												isRepeating: true
+											});;
 
 function createGradientPrefixes (lyr, h) {
 	var prefixes = [
@@ -197,6 +204,11 @@ app.controller('ColorCtrl', function($scope) {
 	$scope.isVisible = true;
 	$scope.displayAngleControl = "block";
 
+	$scope.resetApp = function() {
+		$scope.layer.list = [];
+		$scope.layer.list[0] = LAYER1;
+	};
+
 	$scope.size = {
 		val: 75,
 		isPercentage: false,
@@ -246,42 +258,37 @@ app.controller('ColorCtrl', function($scope) {
 
 	$scope.init = function () {
 		if (cache["saved"] &&
-				cache["saved"].length > 0 ) {
-					var saved = JSON.parse(cache["saved"]),
-							list  = saved.list,
-							colors = [],
-							colorObjs = [],
-							len   = list.length;
+				cache["saved"].length > 0) {
+			var saved = JSON.parse(cache["saved"]),
+					list  = saved.list,
+					colors = [],
+					colorObjs = [],
+					len   = list.length;
 
-					for (var i=0; i<len; i++) {
-							colors = list[i].color.list,
-							l = colors.length;
-							colorObjs = [];
+			for (var i=0; i<len; i++) {
+				colors = list[i].color.list,
+				l = colors.length;
+				colorObjs = [];
 
-							for (var j=0; j<l; j++) {
-								colorObjs[j] = new Color(colors[j].val, colors[j].percentage.val);
-							}
-
-							$scope.layer.list[i] = new Layer({
-									id: i,
-									colors: colorObjs,
-									angle: list[i].angle.val,
-									isRepeating : list[i].isRepeating,
-									isRadial : list[i].isRadial
-							});
-					}
-
-					$scope.size = new Size(saved.size.val, saved.size.isPercentage);
-				} else {
-					$scope.layer.list[0] = new Layer({
-																	 id: 0,
-																	 colors: LAYER1_COLORS,
-																	 isRadial: true,
-																	 isRepeating: true
-																 });
+				for (var j=0; j<l; j++) {
+					colorObjs[j] = new Color(colors[j].val, colors[j].percentage.val);
 				}
 
-		$scope.layer.current = $scope.layer.list[0];
+				$scope.layer.list[i] = new Layer({
+						id: i,
+						colors: colorObjs,
+						angle: list[i].angle.val,
+						isRepeating : list[i].isRepeating,
+						isRadial : list[i].isRadial
+				});
+			}
+
+			$scope.size = new Size(saved.size.val, saved.size.isPercentage);
+		} else {
+			$scope.layer.list[0] = LAYER1;
+		}
+
+		$scope.layer.change(0);
 	};
 
 	$scope.saveToCache = function() {
