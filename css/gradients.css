@@ -140,7 +140,7 @@ a {
 	background: linear-gradient(to bottom, rgba(100,100,100,0.5) 0%,rgba(0,0,0,0.7) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80646464', endColorstr='#b3000000',GradientType=0 ); /* IE6-9 */
 	border: 1px solid rgb(128, 128, 128);
-	border-color: white black black white;
+	border-color: rgba(255,255,255,0.8) black black rgba(255,255,255,0.8);
 	color: white;
 	cursor: pointer;
 	display: block;
@@ -171,7 +171,7 @@ a {
 	background: linear-gradient(to bottom, rgba(100, 100, 100, 0.5) 0%,rgba(0, 0, 0, 0.7) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80646464', endColorstr='#b3000000',GradientType=0 );
 	border: 1px solid rgb(128, 128, 128);
-	border-color: white black black white;
+	border-color: rgba(255,255,255,0.8) black black rgba(255,255,255,0.8);
 	width: 95%;
 	margin: auto auto .2em;
 }
