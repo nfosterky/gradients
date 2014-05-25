@@ -122,8 +122,8 @@ SOFTWARE.
             <span class="grid-full">
               <ul class="layers">
                 <!-- need to add something to check if layer is selected, show selection by changing css  -->
-                <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)">
-                  <span class="layer-preview-bg">
+                <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)" ng-class="{selected: $index==layer.current.index}">
+                  <span class="layer-preview-bg" >
                     <span class="layer-preview" style="background: {{lyr.gradient}}" >{{$index}}</span>
                   </span>
                 </li>

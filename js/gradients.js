@@ -44,7 +44,6 @@ var Color = function(val, percentage) {
 	}
 	return color;
 };
-
 var Layer = function(opt) {
 	var layer = {
 		id: opt.id ? opt.id : 0,
@@ -253,6 +252,7 @@ app.controller('ColorCtrl', function($scope) {
 		change : function(index) {
 			this.current = this.list[index];
 			this.current.index = index;
+			console.log(index);
 			this.display.btnRemove = (this.list.length > 1) ? "block" : "none";
  		}
 	};

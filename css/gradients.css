@@ -119,8 +119,15 @@ a {
 }
 
 .layer-tab {
-	display: inline;
+	margin-right: .5em;
+	display: inline-block;
 	text-align: center;
+	border: 2px solid transparent;
+}
+
+.selected {
+	border: 2px solid rgb(128,128,128);
+	border-color: white black black white;
 }
 
 .button {
