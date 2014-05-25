@@ -115,9 +115,9 @@ SOFTWARE.
               Layers
             </span>
             <span  class="grid-fourth">
-              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}">
+              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}" ng-click="layer.remove($index)">
                 <span class="layer-preview" style="background: {{layer.current.gradient}}" >
-                  <a type="button" class="btn-delete-layer" ng-click="layer.remove($index)" >X</a>
+                  <span class="btn-delete-layer">X</span>
                 </span>
               </span>
             </span>

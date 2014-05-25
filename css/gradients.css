@@ -91,7 +91,7 @@ a {
 .layer-preview-bg {
 	border: 1px solid rgb(128, 128, 128);
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
-	display: inline-block;
+	display: block;
 	vertical-align: middle;
 	width: 3rem;
 	height: 3rem;
@@ -235,7 +235,7 @@ a {
 
 .btn-delete-layer, .btn-delete-layer:hover  {
 	color: rgb(78, 78, 78);
-	display: inline-block;
+	display: block;
 	text-shadow: 0px -1px rgb(0, 0, 0), 0px 1px rgb(255, 255, 255);
 	font-size: 2rem;
 	opacity: .6;
