@@ -112,20 +112,26 @@ SOFTWARE.
               <a class="button" id="btnReset" ng-click="resetApp()" >Reset</a>
             </span>
             <span class="grid-half">
-                   <a class="btn-add-layer icon-plus" ng-click="layer.add()"> Layer</a>
+              Layers
             </span>
             <span  class="grid-fourth">
-              <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.remove($index)" style="display:{{layer.display.btnRemove}}"></a>
+              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}">
+                <span class="layer-preview" style="background: {{layer.current.gradient}}" >
+                  <a type="button" class="btn-delete-layer" ng-click="layer.remove($index)" >X</a>
+                </span>
+              </span>
             </span>
           </div>
           <div class="layer-tabs row row-start-xsmall">
             <span class="grid-full">
               <ul class="layers">
-                <!-- need to add something to check if layer is selected, show selection by changing css  -->
                 <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)" ng-class="{selected: $index==layer.current.index}">
                   <span class="layer-preview-bg" >
                     <span class="layer-preview" style="background: {{lyr.gradient}}" >{{$index}}</span>
                   </span>
+                </li>
+                <li class="layer-tab">
+                    <a class="btn-add-layer icon-plus" ng-click="layer.add()"></a>
                 </li>
               </ul>
             </span>

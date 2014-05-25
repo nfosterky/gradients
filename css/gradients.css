@@ -226,11 +226,19 @@ a {
 }
 
 .btn-delete, .btn-delete:hover  {
-	color: rgb(200, 200, 200);
-	display: inline-block;
+	color: rgb(158, 158, 158);
+	text-shadow: 0px 1px rgb(0, 0, 0), 0px -1px rgb(255, 255, 255);
+	font-size: 1rem;
+	opacity: 1;
 	margin-right: .5em;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.5),
-				 0 -1px rgba(255, 255, 255, 0.5);
+}
+
+.btn-delete-layer, .btn-delete-layer:hover  {
+	color: rgb(78, 78, 78);
+	display: inline-block;
+	text-shadow: 0px -1px rgb(0, 0, 0), 0px 1px rgb(255, 255, 255);
+	font-size: 2rem;
+	opacity: .6;
 }
 
 .cssBg {
