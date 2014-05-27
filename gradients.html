@@ -112,18 +112,6 @@ SOFTWARE.
               <a class="button" id="btnReset" ng-click="resetApp()" >Reset</a>
             </span>
             <span class="grid-half">
-              Layers
-            </span>
-            <span  class="grid-fourth">
-              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}" ng-click="layer.remove($index)">
-                <span class="layer-preview" style="background: {{layer.current.gradient}}" >
-                  <span class="btn-delete-layer">X</span>
-                </span>
-              </span>
-            </span>
-          </div>
-          <div class="layer-tabs row row-start-xsmall">
-            <span class="grid-full">
               <ul class="layers">
                 <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)" ng-class="{selected: $index==layer.current.index}">
                   <span class="layer-preview-bg" >
@@ -134,6 +122,13 @@ SOFTWARE.
                     <a class="btn-add-layer icon-plus" ng-click="layer.add()"></a>
                 </li>
               </ul>
+            </span>
+            <span  class="grid-fourth">
+              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}" ng-click="layer.remove($index)">
+                <span class="layer-preview" style="background: {{layer.current.gradient}}" >
+                  <span class="btn-delete-layer">X</span>
+                </span>
+              </span>
             </span>
           </div>
           <div class="row row-start-xsmall">
