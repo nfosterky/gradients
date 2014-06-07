@@ -11,7 +11,7 @@ var Color = function(val, percentage) {
 	var color = {
 		val : val,
 		percentage : {
-			val : percentage,
+			val : percentage ? percentage : 50,
 			plus : function () {
 				this.val++;
 			},
@@ -73,10 +73,8 @@ var Size  = function(val, isPercentage) {
 	return size;
 };
 var cache = window.localStorage ? window.localStorage : {};
-var LAYER1_COLORS = [
-			new Color ("rgba(150,255,255,1)", 50),
-			new Color ("rgba(  0,  0,150,1)", 51)
-		],
+var LYR1_CLR1 = "rgba(150,255,255,1)",
+		LYR1_CLR2 = "rgba(  0,  0,150,1)",
 		LAYER2_COLORS = [
 			new Color ("rgba(74, 255, 74, 0.3)", 50),
 			new Color ("rgba(246, 255, 0, 0.5)", 51)
@@ -179,7 +177,7 @@ app.controller('ColorCtrl', function($scope) {
 		$scope.layer.list = [];
 		$scope.layer.list[0] = new Layer({
 															id: 0,
-															colors: LAYER1_COLORS,
+															colors: [new Color(LYR1_CLR1, 50), new Color(LYR1_CLR2, 51)],
 															isRadial: true,
 															isRepeating: true
 														});
@@ -265,7 +263,7 @@ app.controller('ColorCtrl', function($scope) {
 		} else {
 			$scope.layer.list[0] = new Layer({
 																id: 0,
-																colors: LAYER1_COLORS,
+																colors: [new Color(LYR1_CLR1, 50), new Color(LYR1_CLR2, 51)],
 																isRadial: true,
 																isRepeating: true
 															});
