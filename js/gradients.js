@@ -80,13 +80,7 @@ var LAYER1_COLORS = [
 		LAYER2_COLORS = [
 			new Color ("rgba(74, 255, 74, 0.3)", 50),
 			new Color ("rgba(246, 255, 0, 0.5)", 51)
-		],
-		LAYER1 = new Layer({
-												id: 0,
-												colors: LAYER1_COLORS,
-												isRadial: true,
-												isRepeating: true
-											});;
+		];
 
 function createGradientPrefixes (lyr, h) {
 	var prefixes = [
@@ -183,7 +177,12 @@ app.controller('ColorCtrl', function($scope) {
 
 	$scope.resetApp = function() {
 		$scope.layer.list = [];
-		$scope.layer.list[0] = LAYER1;
+		$scope.layer.list[0] = new Layer({
+															id: 0,
+															colors: LAYER1_COLORS,
+															isRadial: true,
+															isRepeating: true
+														});
 		$scope.layer.change(0);
 	};
 
@@ -240,9 +239,9 @@ app.controller('ColorCtrl', function($scope) {
 				cache["saved"].length > 0) {
 			var saved = JSON.parse(cache["saved"]),
 					list  = saved.list,
+					len   = list.length,
 					colors = [],
-					colorObjs = [],
-					len   = list.length;
+					colorObjs = [];
 
 			for (var i=0; i<len; i++) {
 				colors = list[i].color.list,
@@ -264,7 +263,12 @@ app.controller('ColorCtrl', function($scope) {
 
 			$scope.size = new Size(saved.size.val, saved.size.isPercentage);
 		} else {
-			$scope.layer.list[0] = LAYER1;
+			$scope.layer.list[0] = new Layer({
+																id: 0,
+																colors: LAYER1_COLORS,
+																isRadial: true,
+																isRepeating: true
+															});
 		}
 
 		$scope.layer.change(0);
@@ -340,16 +344,16 @@ app.controller('ColorCtrl', function($scope) {
 					""
 			];
 
-		var lyr = {};
+		var lyr = {},
+				l = "";
 		for (var h=$scope.layer.list.length-1; h>=0; h--) {
 			lyr = $scope.layer.list[h];
 			strLstColors = createGradient(lyr.color.list);
+			l = "";
+			len = gradients.length;
 
 			// loop through different browser css prefixes
-			// len = gradients.length;
-			var l = "";
 			for (var i=0; i<len; i++) {
-
 				l = gradients[i];
 				if(lyr.isRepeating) l += "repeating-";
 				l += lyr.gradientDirection + "-gradient( ";
