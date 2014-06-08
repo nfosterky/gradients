@@ -25,7 +25,7 @@ var Color = function(val, percentage) {
 var Layer = function(opt) {
 	var layer = {
 		id: opt.id ? opt.id : 0,
-		gradientDirection: "linear",
+		gradientDirection: opt.gradientDirection ? opt.gradientDirection : "linear",
 		angle: {
 			val: opt.angle ? opt.angle : 45, //getRandomInt(0,360),
 			plus: function () {
@@ -72,6 +72,34 @@ var Size  = function(val, isPercentage) {
 	})
 	return size;
 };
+var DefaultLayers = function() {
+		return [
+			new Layer({
+				id: 0,
+				colors: [new Color("rgb(200, 200, 255)", 1), new Color("rgb(10, 0, 100)", 100)],
+				angle: 160,
+				isRadial: false,
+				isRepeating: false
+			}),
+			new Layer({
+				id: 1,
+				colors: [new Color("rgba(250, 250, 250, 0.3)", 1), new Color("rgba(0, 0, 0, 0.4)", 100)],
+				isRadial: true,
+				isRepeating: false
+			}),
+			new Layer({
+				id: 2,
+				colors: [
+					new Color("rgba(  0, 255,  22, 0)", 48),
+					new Color("rgba( 90,  90, 165, 1)", 50),
+					new Color("rgba(158, 151, 209, 1)", 95),
+					new Color("rgba(255, 255, 255, 1)", 100)],
+				isRadial: true,
+				isRepeating: false
+			})
+		];
+}
+
 var cache = window.localStorage ? window.localStorage : {};
 var LYR1_CLR1 = "rgba(150,255,255,1)",
 		LYR1_CLR2 = "rgba(  0,  0,150,1)",
@@ -175,12 +203,7 @@ app.controller('ColorCtrl', function($scope) {
 
 	$scope.resetApp = function() {
 		$scope.layer.list = [];
-		$scope.layer.list[0] = new Layer({
-															id: 0,
-															colors: [new Color(LYR1_CLR1, 50), new Color(LYR1_CLR2, 51)],
-															isRadial: true,
-															isRepeating: true
-														});
+		$scope.layer.list = new DefaultLayers();
 		$scope.layer.change(0);
 	};
 
@@ -261,12 +284,8 @@ app.controller('ColorCtrl', function($scope) {
 
 			$scope.size = new Size(saved.size.val, saved.size.isPercentage);
 		} else {
-			$scope.layer.list[0] = new Layer({
-																id: 0,
-																colors: [new Color(LYR1_CLR1, 50), new Color(LYR1_CLR2, 51)],
-																isRadial: true,
-																isRepeating: true
-															});
+			// need to loop through layers
+			$scope.layer.list = new DefaultLayers();
 		}
 
 		$scope.layer.change(0);
