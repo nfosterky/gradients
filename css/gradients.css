@@ -277,6 +277,10 @@ a {
 	left: 0;
 }
 
+.transparentFont {
+	color: transparent;
+}
+
 /* front pane, placed above back */
 .front {
 	z-index: 2;

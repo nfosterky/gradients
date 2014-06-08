@@ -76,7 +76,7 @@ var DefaultLayers = function() {
 		return [
 			new Layer({
 				id: 0,
-				colors: [new Color("rgb(200, 200, 255)", 1), new Color("rgb(10, 0, 100)", 100)],
+				colors: [new Color("rgb(200, 200, 255)", 30), new Color("rgb(10, 0, 100)", 70)],
 				angle: 160,
 				isRadial: false,
 				isRepeating: false
@@ -96,6 +96,17 @@ var DefaultLayers = function() {
 					new Color("rgba(255, 255, 255, 1)", 100)],
 				isRadial: true,
 				isRepeating: false
+			}),
+			new Layer({
+				id: 3,
+				colors: [
+					new Color("rgba(200, 255,  30, 0.2)", 25),
+					new Color("rgba( 90,  30, 140, 0.4)", 50),
+					new Color("rgba(200, 255,  30, 0.2)", 75)
+				],
+				angle: 135,
+				isRadial: false,
+				isRepeating: true
 			})
 		];
 }
@@ -197,8 +208,8 @@ app.directive('uiColorpicker', function() {
 
 app.controller('ColorCtrl', function($scope) {
 	// display options
-	$scope.display = "block";
-	$scope.isVisible = true;
+	$scope.display = "inline-block";
+	$scope.isVisible = false;
 	$scope.displayAngleControl = "block";
 
 	$scope.resetApp = function() {
@@ -332,7 +343,7 @@ app.controller('ColorCtrl', function($scope) {
 		var name = "";
 		if ($scope.isVisible) {
 			$scope.iconDisplay = "icon-caret-up";
-			$scope.display = "block";
+			$scope.display = "inline-block";
 			name = "Close";
 		} else {
 			$scope.iconDisplay = "icon-caret-down";
