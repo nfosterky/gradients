@@ -248,6 +248,8 @@ a {
 
 /* flip speed goes here */
 .flipper {
+	max-width: 800px;
+	margin: auto;
 	-webkit-transition: 0.6s;
 	   -moz-transition: 0.6s;
 	     -o-transition: 0.6s;
