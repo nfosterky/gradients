@@ -194,6 +194,7 @@ app.directive('uiColorpicker', function() {
 										});
 								},
 								showAlpha: true,
+								showInput: true,
 								clickoutFiresChange: true
 						}, scope.$eval(attrs.options));
 
