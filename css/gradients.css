@@ -181,8 +181,8 @@ a {
 }
 
 .row-big {
-	border-bottom: 1px solid rgba(30, 30, 30, 1);
-	border-top: 1px solid rgba(225, 225, 225, .5);
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+	border-top: 1px solid rgba(225, 225, 225, 1);
 }
 
 .list-colors {
@@ -193,6 +193,10 @@ a {
 	border-top: 1px solid rgb(0, 0, 0);
 /* 	border-bottom: 1px solid rgba(0, 0, 0, 0.5); */
 	padding: .5em 0em;
+}
+
+.color-position {
+	margin-top: .5em;
 }
 
 .color-row1 {

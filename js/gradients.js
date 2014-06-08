@@ -179,31 +179,31 @@ function rand_color() {
 
 app.directive('uiColorpicker', function() {
 		return {
-				restrict: 'E',
-				require: 'ngModel',
-				scope: false,
-				replace: true,
-				template: "<span><input type='color' class='input-small' /></span>",
-				link: function(scope, element, attrs, ngModel) {
-						var input = element.find('input');
-						var options = angular.extend({
-								color: ngModel.$viewValue,
-								move: function(color) {
-										scope.$apply(function() {
-											ngModel.$setViewValue(color.toRgbString());
-										});
-								},
-								showAlpha: true,
-								showInput: true,
-								clickoutFiresChange: true
+			restrict: 'E',
+			require: 'ngModel',
+			scope: false,
+			replace: true,
+			template: "<span><input type='color' class='input-small' /></span>",
+			link: function(scope, element, attrs, ngModel) {
+				var input = element.find('input');
+				var options = angular.extend({
+							color: ngModel.$viewValue,
+							move: function(color) {
+								scope.$apply(function() {
+									ngModel.$setViewValue(color.toRgbString());
+								});
+							},
+							showAlpha: true,
+							showInput: true,
+							clickoutFiresChange: true
 						}, scope.$eval(attrs.options));
 
-						ngModel.$render = function() {
-							input.spectrum('set', ngModel.$viewValue || '');
-						};
+				ngModel.$render = function() {
+					input.spectrum('set', ngModel.$viewValue || '');
+				};
 
-						input.spectrum(options);
-				}
+				input.spectrum(options);
+			}
 		};
 });
 
