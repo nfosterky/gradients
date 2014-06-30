@@ -217,19 +217,11 @@ app.controller('ColorCtrl', function($scope) {
 		$scope.layer.list = [];
 		$scope.layer.list = new DefaultLayers();
 		$scope.layer.change(0);
+
+		$scope.size = new Size(75, false);
 	};
 
-	$scope.size = {
-		val: 75,
-		isPercentage: false,
-		measurement: "px",
-		plus: function () {
-				this.val++;
-		},
-		minus: function() {
-				this.val--;
-		}
-	}
+	$scope.size = new Size(75, false);
 
 	$scope.layer = {
 		index: 0,
@@ -389,7 +381,7 @@ app.controller('ColorCtrl', function($scope) {
 				if (lyr.gradientDirection.toLowerCase() === "linear") l += lyr.angle.val + "deg, ";
 				l += strLstColors+")";
 				prefixLayer[i] = l + ";";
-				if (h !== 0) l += ",";
+				if (h !== 0) l += ",\n";
 				else l += ";";
 
 				bg[i] = (bg[i]) ? bg[i] + l : l;

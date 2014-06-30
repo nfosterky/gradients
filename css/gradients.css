@@ -227,14 +227,14 @@ a {
 }
 
 .cssBg {
-	margin-bottom: .25em;
+	margin-bottom: .5em;
 }
 
 .code-display {
-	color: rgb(225, 225, 225);
-	margin-left: 1em;
+	color: rgb(30, 30, 30);
+	/*margin-left: 1em;*/
 	text-align: left;
-	text-shadow: 1px 1px rgb(30, 30, 30);
+	/*text-shadow: 1px 1px rgb(30, 30, 30);*/
 }
 
 @media (max-width: 40em) {
