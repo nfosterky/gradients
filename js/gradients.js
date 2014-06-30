@@ -57,9 +57,10 @@ var Layer = function(opt) {
 	return layer;
 };
 var Size  = function(val, isPercentage) {
-	var size = {
+	return {
 		val : val,
 		isPercentage : isPercentage,
+		measurement : isPercentage ? "%" : "px",
 		plus: function () {
 				this.val++;
 		},
@@ -67,10 +68,6 @@ var Size  = function(val, isPercentage) {
 				this.val--;
 		}
 	};
-	(function() {
-		size.measurement = isPercentage ? "%" : "px";
-	})
-	return size;
 };
 var DefaultLayers = function() {
 		return [
