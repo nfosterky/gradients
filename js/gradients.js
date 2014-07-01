@@ -41,7 +41,7 @@ var Layer = function(opt) {
 		color: {
 			list: opt.colors ? opt.colors : LAYER1_COLORS,
 			display : {
-				btnRemove : "none"
+				btnRemove : opt.colors && opt.colors.length > 2 ? "block" : "none"
 			},
 			add: function () {
 				this.list.push(new Color("#ff0000", 100));
