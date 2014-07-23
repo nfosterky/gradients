@@ -60,6 +60,7 @@ a {
 .view-header {
 	background-color: rgba(30, 30, 30, 1);
 	padding-top: .25em;
+	margin: auto;
 }
 
 .view-title {
