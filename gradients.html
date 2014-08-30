@@ -125,29 +125,29 @@ Version: 1.2
               </label>
             </div>
           </div>
-          <div class="size">
+          <div class="size range range-border">
             <div class="row row-start-xsmall">
               <div class="grid-full">
-              <span> Size: {{size.val}} </span>
-              <label class="button button-small" for="cbxSizeMeasurement">
-                <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
-                {{size.measurement}}
-              </label>
+                <span>Size: <input type="number" class="inp-range-num" min="0" max="100" ng-model="size.val" /></span>
+                <label class="button button-small" for="cbxSizeMeasurement">
+                  <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
+                  {{size.measurement}}
+                </label>
+              </div>
             </div>
-            </div>
-            <div class="row row-start-xsmall range">
+            <div class="row row-start-xsmall">
               <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="size.minus()" value="-"></a>
               <input type="range" class="grid-half ctrl-range inp-range" ng-model="size.val" min="0" max="100"></input>
               <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="size.plus()" value="+"></a>
             </div>
           </div>
-          <div class="angle" style="display:{{displayAngleControl}}">
+          <div class="angle range range-border" style="display:{{displayAngleControl}}">
             <div class="row row-start-xsmall">
               <div class="grid-full">
-              <span> Angle: {{layer.current.angle.val}} </span>
+              <span>Angle: <input type="number" class="inp-range-num" min="0" max="360" ng-model="layer.current.angle.val" /></span>
             </div>
             </div>
-            <div class="row row-start-xsmall range">
+            <div class="row row-start-xsmall">
               <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="layer.current.angle.minus()" value="-"></a>
               <input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.current.angle.val" min="0" max="360"></input>
               <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="layer.current.angle.plus()" value="+"></a>
@@ -155,7 +155,7 @@ Version: 1.2
           </div>
           <h3>Colors</h3>
           <ul id="list-colors" class="list-colors"  >
-            <li ng-repeat="color in layer.current.color.list" class="row-big">
+            <li ng-repeat="color in layer.current.color.list" class="row-big range">
               <div class="row row-start-xsmall color-row1" >
                 <div class="grid-fourth" >
                   <div class="color-picker">
@@ -163,14 +163,14 @@ Version: 1.2
                   </div>
                 </div>
                 <div class="color-position grid-half">
-                  <span>{{color.percentage.val}}%</span>
+                  <span><input type="number" class="inp-range-num" min="0" max="100" ng-model="color.percentage.val" />%</span>
                 </div>
                 <div  class="grid-fourth delete">
                   <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"
                      style="display:{{layer.current.color.display.btnRemove}}"></a>
                 </div>
               </div>
-              <div class="row row-start-xsmall range">
+              <div class="row row-start-xsmall">
                 <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="color.percentage.minus($index)"></a>
                 <input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage.val"/>
                 <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="color.percentage.plus($index)"></a>
