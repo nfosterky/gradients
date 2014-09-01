@@ -86,9 +86,9 @@ Version: 1.2
       </div>
       <div class="flipper" style="display:{{display}}">
         <div id="front" class="front">
-          <div class="layer-tabs row row-start-xsmall">
+          <div class="layer-tabs row row-start-xsmall frame">
             <span class="grid-fourth">
-              <a class="button" id="btnReset" ng-click="resetApp()" >Reset</a>
+              <a class="button" id="btnReset" ng-click="resetApp()">Reset</a>
             </span>
             <span class="grid-half">
               <ul class="layers">
@@ -103,85 +103,93 @@ Version: 1.2
               </ul>
             </span>
             <span  class="grid-fourth">
-              <span class="layer-preview-bg selected" style="display:{{layer.display.btnRemove}}" ng-click="layer.remove($index)">
-                <span class="layer-preview" style="background: {{layer.current.gradient}}" >
+              <span  style="display:{{layer.display.btnRemove}}" ng-click="layer.remove($index)">
+                <span class="layer-preview" >
                   <span class="btn-delete-layer">X</span>
                 </span>
               </span>
             </span>
           </div>
-          <div class="row row-start-xsmall">
-            <div class="grid-half">
-              <label class="button" for="cbxDirection">
-                <input id="cbxDirection" type="checkbox" name="gradient" ng-model="layer.current.isRadial" ng-change="changeDirection()" />
-                <span class="{{iconDirection}}"></span>
-                {{nameDirection}}
-              </label>
-            </div>
-            <div class="grid-half">
-              <label class="button" for="cbxRepeating">
-                <input id="cbxRepeating" name="cbxRepeating" type="checkbox" ng-model="layer.current.isRepeating" />
-                {{nameRepeating}}
-              </label>
-            </div>
+          <div class="row row-start-xsmall viewscreen">
+            <span class="layer-preview-bg layer-preview-bg-large selected">
+              <span class="layer-preview layer-preview-large" style="background: {{layer.current.gradient}}" ></span>
+            </span>
           </div>
-          <div class="size range range-border">
+
+          <div class="controls">
             <div class="row row-start-xsmall">
-              <div class="grid-full">
-                <span>Size: <input type="number" class="inp-range-num" min="0" max="100" ng-model="size.val" /></span>
-                <label class="button button-small" for="cbxSizeMeasurement">
-                  <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
-                  {{size.measurement}}
+              <div class="grid-half">
+                <label class="button" for="cbxDirection">
+                  <input id="cbxDirection" type="checkbox" name="gradient" ng-model="layer.current.isRadial" ng-change="changeDirection()" />
+                  <span class="{{iconDirection}}"></span>
+                  {{nameDirection}}
+                </label>
+              </div>
+              <div class="grid-half">
+                <label class="button" for="cbxRepeating">
+                  <input id="cbxRepeating" name="cbxRepeating" type="checkbox" ng-model="layer.current.isRepeating" />
+                  {{nameRepeating}}
                 </label>
               </div>
             </div>
-            <div class="row row-start-xsmall">
-              <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="size.minus()" value="-"></a>
-              <input type="range" class="grid-half ctrl-range inp-range" ng-model="size.val" min="0" max="100"></input>
-              <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="size.plus()" value="+"></a>
-            </div>
-          </div>
-          <div class="angle range range-border" style="display:{{displayAngleControl}}">
-            <div class="row row-start-xsmall">
-              <div class="grid-full">
-              <span>Angle: <input type="number" class="inp-range-num" min="0" max="360" ng-model="layer.current.angle.val" /></span>
-            </div>
-            </div>
-            <div class="row row-start-xsmall">
-              <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="layer.current.angle.minus()" value="-"></a>
-              <input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.current.angle.val" min="0" max="360"></input>
-              <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="layer.current.angle.plus()" value="+"></a>
-            </div>
-          </div>
-          <h3>Colors</h3>
-          <ul id="list-colors" class="list-colors"  >
-            <li ng-repeat="color in layer.current.color.list" class="row-big range">
-              <div class="row row-start-xsmall color-row1" >
-                <div class="grid-fourth" >
-                  <div class="color-picker">
-                    <ui-colorpicker ng-model="color.val"></ui-colorpicker>
-                  </div>
-                </div>
-                <div class="color-position grid-half">
-                  <span><input type="number" class="inp-range-num" min="0" max="100" ng-model="color.percentage.val" />%</span>
-                </div>
-                <div  class="grid-fourth delete">
-                  <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"
-                     style="display:{{layer.current.color.display.btnRemove}}"></a>
+            <div class="size range range-border">
+              <div class="row row-start-xsmall">
+                <div class="grid-full">
+                  <span>Size: <input type="number" class="inp-range-num" min="0" max="100" ng-model="size.val" /></span>
+                  <label class="button button-small" for="cbxSizeMeasurement">
+                    <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
+                    {{size.measurement}}
+                  </label>
                 </div>
               </div>
               <div class="row row-start-xsmall">
-                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="color.percentage.minus($index)"></a>
-                <input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage.val"/>
-                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="color.percentage.plus($index)"></a>
+                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="size.minus()" value="-"></a>
+                <input type="range" class="grid-half ctrl-range inp-range" ng-model="size.val" min="0" max="100"></input>
+                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="size.plus()" value="+"></a>
               </div>
-            </li>
-          </ul>
-          <div class="row" >
-            <a type="button" class="button" ng-click="layer.current.color.add()">
-              <span class="icon-plus"></span>
-              ADD COLOR
-            </a>
+            </div>
+            <div class="angle range range-border" style="display:{{displayAngleControl}}">
+              <div class="row row-start-xsmall">
+                <div class="grid-full">
+                <span>Angle: <input type="number" class="inp-range-num" min="0" max="360" ng-model="layer.current.angle.val" /></span>
+              </div>
+              </div>
+              <div class="row row-start-xsmall">
+                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="layer.current.angle.minus()" value="-"></a>
+                <input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.current.angle.val" min="0" max="360"></input>
+                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="layer.current.angle.plus()" value="+"></a>
+              </div>
+            </div>
+            <h3>Colors</h3>
+            <ul id="list-colors" class="list-colors"  >
+              <li ng-repeat="color in layer.current.color.list" class="row-big range">
+                <div class="row row-start-xsmall color-row1" >
+                  <div class="grid-fourth" >
+                    <div class="color-picker">
+                      <ui-colorpicker ng-model="color.val"></ui-colorpicker>
+                    </div>
+                  </div>
+                  <div class="color-position grid-half">
+                    <span><input type="number" class="inp-range-num" min="0" max="100" ng-model="color.percentage.val" />%</span>
+                  </div>
+                  <div  class="grid-fourth delete">
+                    <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"
+                       style="display:{{layer.current.color.display.btnRemove}}"></a>
+                  </div>
+                </div>
+                <div class="row row-start-xsmall">
+                  <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="color.percentage.minus($index)"></a>
+                  <input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage.val"/>
+                  <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="color.percentage.plus($index)"></a>
+                </div>
+              </li>
+            </ul>
+            <div class="row" >
+              <a type="button" class="button" ng-click="layer.current.color.add()">
+                <span class="icon-plus"></span>
+                ADD COLOR
+              </a>
+            </div>
           </div>
         </div>
         <div id="back"  class="back">
