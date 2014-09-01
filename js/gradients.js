@@ -7,34 +7,44 @@
 angular.module('app', ['ngTouch']);
 
 var app = angular.module('app', []);
-var Color = function(val, percentage) {
-	var color = {
-		val : val,
-		percentage : {
-			val : percentage ? percentage : 50,
-			plus : function () {
+
+var range = function(spec) {
+	return {
+		val: spec.val ? spec.val : 0,
+		min: spec.min ? spec.min : 0,
+		max: spec.max ? spec.max : 100,
+		plus: function() {
+			if (this.val < this.max) {
 				this.val++;
-			},
-			minus : function () {
+			}
+		},
+		minus: function() {
+			if (this.val > this.min) {
 				this.val--;
 			}
 		}
-	}
-	return color;
+	};
+}
+
+var color = function color (val, percentage) {
+	return {
+		val: val,
+		percentage: range({
+			val: percentage ? percentage : 50,
+			min: 0,
+			max: 100
+		})
+	};
 };
-var Layer = function(opt) {
-	var layer = {
+var layer = function layer (opt) {
+	return {
 		id: opt.id ? opt.id : 0,
 		gradientDirection: opt.gradientDirection ? opt.gradientDirection : "linear",
-		angle: {
-			val: opt.angle ? opt.angle : 45, //getRandomInt(0,360),
-			plus: function () {
-				this.val++;
-			},
-			minus: function() {
-				this.val--;
-			}
-		},
+		angle: range({
+			val: opt.angle ? opt.angle : 45,
+			min: 0,
+			max: 360
+		}),
 		isRepeating: opt.isRepeating ? opt.isRepeating : false,
 		isRadial: opt.isRadial ? opt.isRadial : false,
 		gradientDirection: opt.isRadial ? "radial" : "linear",
@@ -44,7 +54,7 @@ var Layer = function(opt) {
 				btnRemove : opt.colors && opt.colors.length > 2 ? "block" : "none"
 			},
 			add: function () {
-				this.list.push(new Color("#ff0000", 100));
+				this.list.push(color("#ff0000", 100));
 				this.display.btnRemove = (this.list.length > 2) ? "block" : "none";
 			},
 			remove: function (index) {
@@ -53,53 +63,48 @@ var Layer = function(opt) {
 			}
 		}
 	}
-
-	return layer;
 };
-var Size  = function(val, isPercentage) {
-	return {
-		val : val,
-		isPercentage : isPercentage,
-		measurement : isPercentage ? "%" : "px",
-		plus: function () {
-				this.val++;
-		},
-		minus: function() {
-				this.val--;
-		}
-	};
+var size = function size (val, isPercentage) {
+	var self = range({
+		val: val ? val : 50,
+		min: 0,
+		max: 500
+	});
+	self.isPercentage = isPercentage;
+	self.measurement = isPercentage ? "%" : "px";
+	return self;
 };
-var DefaultLayers = function() {
+var defaultLayers = function() {
 		return [
-			new Layer({
+			layer({
 				id: 0,
-				colors: [new Color("rgb(200, 200, 255)", 30), new Color("rgb(10, 0, 100)", 70)],
+				colors: [color("rgb(200, 200, 255)", 30), color("rgb(10, 0, 100)", 70)],
 				angle: 160,
 				isRadial: false,
 				isRepeating: false
 			}),
-			new Layer({
+			layer({
 				id: 1,
-				colors: [new Color("rgba(250, 250, 250, 0.3)", 1), new Color("rgba(0, 0, 0, 0.4)", 100)],
+				colors: [color("rgba(250, 250, 250, 0.3)", 1), color("rgba(0, 0, 0, 0.4)", 100)],
 				isRadial: true,
 				isRepeating: false
 			}),
-			new Layer({
+			layer({
 				id: 2,
 				colors: [
-					new Color("rgba(  0, 255,  22, 0)", 48),
-					new Color("rgba( 90,  90, 165, 1)", 50),
-					new Color("rgba(158, 151, 209, 1)", 95),
-					new Color("rgba(255, 255, 255, 1)", 100)],
+					color("rgba(  0, 255,  22, 0)", 48),
+					color("rgba( 90,  90, 165, 1)", 50),
+					color("rgba(158, 151, 209, 1)", 95),
+					color("rgba(255, 255, 255, 1)", 100)],
 				isRadial: true,
 				isRepeating: false
 			}),
-			new Layer({
+			layer({
 				id: 3,
 				colors: [
-					new Color("rgba(200, 255,  30, 0.2)", 25),
-					new Color("rgba( 90,  30, 140, 0.4)", 50),
-					new Color("rgba(200, 255,  30, 0.2)", 75)
+					color("rgba(200, 255,  30, 0.2)", 25),
+					color("rgba( 90,  30, 140, 0.4)", 50),
+					color("rgba(200, 255,  30, 0.2)", 75)
 				],
 				angle: 135,
 				isRadial: false,
@@ -112,8 +117,8 @@ var cache = window.localStorage ? window.localStorage : {};
 var LYR1_CLR1 = "rgba(150,255,255,1)",
 		LYR1_CLR2 = "rgba(  0,  0,150,1)",
 		LAYER2_COLORS = [
-			new Color ("rgba(74, 255, 74, 0.3)", 50),
-			new Color ("rgba(246, 255, 0, 0.5)", 51)
+			color("rgba(74, 255, 74, 0.3)", 50),
+			color("rgba(246, 255, 0, 0.5)", 51)
 		];
 
 function createGradientPrefixes (lyr, h) {
@@ -212,13 +217,13 @@ app.controller('ColorCtrl', function($scope) {
 
 	$scope.resetApp = function() {
 		$scope.layer.list = [];
-		$scope.layer.list = new DefaultLayers();
+		$scope.layer.list = defaultLayers();
 		$scope.layer.change(0);
 
-		$scope.size = new Size(75, false);
+		$scope.size = size(75, false);
 	};
 
-	$scope.size = new Size(75, false);
+	$scope.size = size(75, false);
 
 	$scope.layer = {
 		index: 0,
@@ -230,11 +235,11 @@ app.controller('ColorCtrl', function($scope) {
 		add : function() {
 			var newIndex = this.list.length;
 
-			this.list[newIndex] = new Layer({
+			this.list[newIndex] = layer({
 															id: newIndex,
 															colors: [
-																new Color ("rgba(  0, 255, 22, 0.3)", 50),
-																new Color ("rgba(246, 255,  0, 0.4)", 51)
+																color("rgba(  0, 255, 22, 0.3)", 50),
+																color("rgba(246, 255,  0, 0.4)", 51)
 															],
 															angle: 225
 														});
@@ -271,10 +276,10 @@ app.controller('ColorCtrl', function($scope) {
 				colorObjs = [];
 
 				for (var j=0; j<l; j++) {
-					colorObjs[j] = new Color(colors[j].val, colors[j].percentage.val);
+					colorObjs[j] = color(colors[j].val, colors[j].percentage.val);
 				}
 
-				$scope.layer.list[i] = new Layer({
+				$scope.layer.list[i] = layer({
 						id: i,
 						colors: colorObjs,
 						angle: list[i].angle.val,
@@ -283,10 +288,10 @@ app.controller('ColorCtrl', function($scope) {
 				});
 			}
 
-			$scope.size = new Size(saved.size.val, saved.size.isPercentage);
+			$scope.size = size(saved.size.val, saved.size.isPercentage);
 		} else {
 			// need to loop through layers
-			$scope.layer.list = new DefaultLayers();
+			$scope.layer.list = defaultLayers();
 		}
 
 		$scope.layer.change(0);
@@ -405,5 +410,4 @@ angular.bootstrap(document, ['app']);
 
 $(document).ready(function (e) {
 	document.getElementById("control-panel").style.display = "block";
-
 });
