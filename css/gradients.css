@@ -67,6 +67,19 @@ a {
 	font-size:1.25em;
 }
 
+.frame {
+	background-color: rgba(30,30,30,1);
+}
+
+.viewscreen {
+	border: 0.5rem solid rgb(30,30,30);
+	border-color:
+		rgb(15, 15, 15)
+		rgb(45, 45, 45)
+		rgb(55, 55, 55)
+		rgb(20, 20, 20);
+}
+
 .layer-preview-bg {
 	border: 1px solid rgb(128, 128, 128);
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
@@ -74,6 +87,13 @@ a {
 	vertical-align: middle;
 	width: 2.5rem;
 	height: 2.5rem;
+	margin: auto;
+}
+
+.layer-preview-bg-large {
+	margin: 2rem auto;
+	width: 150px;
+	height: 150px;
 }
 
 .layer-preview {
@@ -82,6 +102,11 @@ a {
 	text-shadow: 1px 1px rgb(30, 30, 30);
 	vertical-align: middle;
 	width: 2.5rem;
+}
+
+.layer-preview-large {
+	height: 150px;
+	width: 150px;
 }
 
 .layers {
@@ -104,14 +129,22 @@ a {
 	border-color: white black black white;
 }
 
+.controls {
+	background: rgb(30,30,30);
+}
+
 .button {
-	background-color: rgba(45, 45, 45, 0.5);
+	background-color: rgba(0, 0, 0, 0.1);
 	border: 1px solid rgb(128, 128, 128);
-	border-color: rgba(255,255,255,0.8) black black rgba(255,255,255,0.8);
+	border-color:
+		rgba(255, 255, 255, 0.5)
+		rgba(0, 0, 0, 0.25)
+		rgba(0, 0, 0, 0.5)
+		rgba(0, 0, 0, 0.25);
 	color: white;
 	cursor: pointer;
 	display: block;
-	margin: .25em auto;
+	margin: .5em auto;
 	padding: .5em;
 	text-align: center;
 	width: 75%;
@@ -129,12 +162,16 @@ a {
 }
 
 .range {
-	background-color: rgba(45, 45, 45, 0.5);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .range-border {
 	border: 1px solid rgb(128, 128, 128);
-	border-color: rgba(255,255,255,0.5) black black rgba(255,255,255,0.5);
+	border-color:
+		rgba(255, 255, 255, 0.5)
+		rgba(0, 0, 0, 0.25)
+		rgba(0, 0, 0, 0.5)
+		rgba(0, 0, 0, 0.25);
 }
 
 .ctrl-range {
@@ -142,8 +179,9 @@ a {
 }
 
 .btn-add-layer {
-	text-shadow: 0  1px rgba(0,0,0,0.5),
-							 0 -1px rgba(255,255,255,0.5);
+	text-shadow:
+		0  1px rgba(0,0,0,0.5),
+		0 -1px rgba(255,255,255,0.5);
 }
 
 .inp-range {
@@ -189,12 +227,11 @@ a {
 }
 
 .btn-delete-layer, .btn-delete-layer:hover  {
-	color: rgb(78, 78, 78);
+	color: rgb(200, 200, 200);
 	display: block;
-	text-shadow: 0px -1px rgb(0, 0, 0), 0px 1px rgb(255, 255, 255);
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.57), 0px -1px rgba(255, 255, 255, 0.5);
 	font-size: 1.5rem;
 	margin-top: .25rem;
-	opacity: .7;
 }
 
 .cssBg {
@@ -244,9 +281,8 @@ a {
 /* hide back of pane during swap */
 .front, .back {
 	-webkit-backface-visibility: hidden;
-       -moz-backface-visibility: hidden;
-			backface-visibility: hidden;
-	background-color: rgba(0, 0, 0, 0.3);
+  	 -moz-backface-visibility: hidden;
+			    backface-visibility: hidden;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
 	width: 100%;
 	min-height: 20em;
