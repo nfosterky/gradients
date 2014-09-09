@@ -283,6 +283,9 @@ a {
 }
 /* hide back of pane during swap */
 .front, .back {
+	border: 0.25rem solid rgb(30, 30, 30);
+	border-top: 0;
+	box-sizing: border-box;
 	-webkit-backface-visibility: hidden;
   	 -moz-backface-visibility: hidden;
 			    backface-visibility: hidden;

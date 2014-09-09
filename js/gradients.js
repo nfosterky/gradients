@@ -40,7 +40,7 @@ var color = function color (val, percentage) {
 var layer = function layer (opt) {
 	return {
 		id: opt.id ? opt.id : 0,
-		gradientDirection: opt.gradientDirection ? opt.gradientDirection : "linear",
+		gradientDirection: opt.isRadial ? "radial" : "linear",
 		angle: range({
 			val: opt.angle ? opt.angle : 45,
 			min: 0,
@@ -105,7 +105,7 @@ var defaultLayers = function() {
 					color("rgba(158, 151, 209, 1)", 95),
 					color("rgba(255, 255, 255, 1)", 100)
 				],
-				isRadial: false,
+				isRadial: true,
 				isRepeating: false
 			}),
 			layer({
@@ -157,7 +157,6 @@ function createGradientPrefixes (lyr, h) {
 		} else bg[i] += ";";
 	}
 	return bg;
-
 }
 
 function createGradient(colors) {
