@@ -16,7 +16,7 @@ Version: 1.2
 
   <title>Gradients</title>
   <meta name="description" content="Gradients">
-    <meta name="author" content="Nathaniel Foster">
+  <meta name="author" content="Nathaniel Foster">
 
   <!-- Mobile Screen Resizing -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0">
@@ -35,6 +35,7 @@ Version: 1.2
   <link rel="stylesheet" href="css/font.css">
   <link rel="stylesheet" href="css/libs/astro-navbar-plus-css.css" type="text/css">
   <link rel="stylesheet" href="css/gradients.css">
+
   <!-- HTML5 Shim for IE 6-8 -->
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -48,7 +49,9 @@ Version: 1.2
   </script>
   </head>
 
-  <body ng-controller="ColorCtrl" ng-init="init()" style="background: {{bgImage}} background-size: {{bgSize}}">
+  <body style="background: {{bgImage}} background-size: {{bgSize}}"
+    ng-controller="ColorCtrl"
+    ng-init="init()">
 
   <!--[if lt IE 9]>
     <section class="container">
@@ -56,7 +59,7 @@ Version: 1.2
     </section>
   <![endif]-->
 
-  <div id="main_content" >
+  <div id="main_content">
     <div class="header">
       <nav class="nav-wrap">
         <a class="logo" href="/index.html">Nathaniel Foster</a>
@@ -70,11 +73,13 @@ Version: 1.2
         </div>
       </nav>
     </div>
-    <div id="control-panel" class="control-panel flip-container" >
+    <div id="control-panel" class="control-panel flip-container">
       <div class="row row-start-xsmall view-header">
         <div class="grid-fourth">
-          <span class="transparentFont">.</span>
-          <a class="btn" ng-click="showCSS()" style="display:{{display}}"><span class="icon-css3"></span> CSS3</a>
+          <a class="btn" ng-click="showCSS()" style="visibility:{{btnCssVisibility}}">
+            <span class="icon-css3"></span>
+            CSS3
+          </a>
         </div>
         <div class="grid-half view-title">CSS3 Gradients</div>
         <div class="grid-fourth">
@@ -92,9 +97,15 @@ Version: 1.2
             </span>
             <span class="grid-half">
               <ul class="layers">
-                <li class="layer-tab" ng-repeat="lyr in layer.list" ng-click="layer.change($index)" ng-class="{selected: $index==layer.current.index}">
-                  <span class="layer-preview-bg" >
-                    <span class="layer-preview" style="background: {{lyr.gradient}}" >{{$index}}</span>
+                <li class="layer-tab"
+                  ng-repeat="lyr in layer.list"
+                  ng-click="layer.change($index)"
+                  ng-class="{selected: $index==layer.current.index}">
+
+                  <span class="layer-preview-bg">
+                    <span class="layer-preview" style="background: {{lyr.gradient}}" >
+                      {{$index}}
+                    </span>
                   </span>
                 </li>
                 <li class="layer-tab">
@@ -112,7 +123,8 @@ Version: 1.2
           </div>
           <div class="row row-start-xsmall viewscreen">
             <span class="layer-preview-bg layer-preview-bg-large selected">
-              <span class="layer-preview layer-preview-large" style="background: {{layer.current.gradient}}" ></span>
+              <span class="layer-preview layer-preview-large"
+                style="background: {{layer.current.gradient}}"></span>
             </span>
           </div>
 
@@ -120,14 +132,23 @@ Version: 1.2
             <div class="row row-start-xsmall">
               <div class="grid-half">
                 <label class="button" for="cbxDirection">
-                  <input id="cbxDirection" type="checkbox" name="gradient" ng-model="layer.current.isRadial" ng-change="changeDirection()" />
+                  <input id="cbxDirection"
+                    type="checkbox"
+                    name="gradient"
+                    ng-model="layer.current.isRadial"
+                    ng-change="changeDirection()"/>
+
                   <span class="{{iconDirection}}"></span>
                   {{nameDirection}}
                 </label>
               </div>
               <div class="grid-half">
                 <label class="button" for="cbxRepeating">
-                  <input id="cbxRepeating" name="cbxRepeating" type="checkbox" ng-model="layer.current.isRepeating" />
+                  <input id="cbxRepeating"
+                    name="cbxRepeating"
+                    type="checkbox"
+                    ng-model="layer.current.isRepeating"/>
+
                   {{nameRepeating}}
                 </label>
               </div>
@@ -135,33 +156,57 @@ Version: 1.2
             <div class="size range range-border">
               <div class="row row-start-xsmall">
                 <div class="grid-full">
-                  <span>Size: <input type="number" class="inp-range-num" min="0" max="100" ng-model="size.val" /></span>
+                  <span>Size: {{size.val}}</span>
                   <label class="button button-small" for="cbxSizeMeasurement">
-                    <input id="cbxSizeMeasurement"  name="cbxSizeMeasurement" type="checkbox" ng-model="size.isPercentage"></input>
+                    <input id="cbxSizeMeasurement"
+                      name="cbxSizeMeasurement"
+                      type="checkbox"
+                      ng-model="size.isPercentage" />
+
                     {{size.measurement}}
                   </label>
                 </div>
               </div>
               <div class="row row-start-xsmall">
-                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="size.minus()" value="-"></a>
-                <input type="range" class="grid-half ctrl-range inp-range" ng-model="size.val" min="0" max="100"></input>
-                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="size.plus()" value="+"></a>
+                <a class="grid-fourth ctrl-range btn-range icon-minus"
+                  ng-click="size.minus()"
+                  value="-"></a>
+
+                <input type="range"
+                  class="grid-half ctrl-range inp-range"
+                  ng-model="size.val"
+                  min="0"
+                  max="100" />
+
+                <a class="grid-fourth ctrl-range btn-range icon-plus"
+                  ng-click="size.plus()"
+                  value="+"></a>
               </div>
             </div>
             <div class="angle range range-border" style="display:{{displayAngleControl}}">
               <div class="row row-start-xsmall">
                 <div class="grid-full">
-                <span>Angle: <input type="number" class="inp-range-num" min="0" max="360" ng-model="layer.current.angle.val" /></span>
-              </div>
+                  <span>Angle: {{layer.current.angle.val}}</span>
+                </div>
               </div>
               <div class="row row-start-xsmall">
-                <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="layer.current.angle.minus()" value="-"></a>
-                <input type="range" class="grid-half ctrl-range inp-range" ng-model="layer.current.angle.val" min="0" max="360"></input>
-                <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="layer.current.angle.plus()" value="+"></a>
+                <a class="grid-fourth ctrl-range btn-range icon-minus"
+                  ng-click="layer.current.angle.minus()"
+                  value="-"></a>
+
+                <input type="range"
+                  class="grid-half ctrl-range inp-range"
+                  ng-model="layer.current.angle.val"
+                  min="0"
+                  max="360" />
+
+                <a class="grid-fourth ctrl-range btn-range icon-plus"
+                  ng-click="layer.current.angle.plus()"
+                  value="+"></a>
               </div>
             </div>
             <h3>Colors</h3>
-            <ul id="list-colors" class="list-colors"  >
+            <ul id="list-colors" class="list-colors">
               <li ng-repeat="color in layer.current.color.list" class="row-big range">
                 <div class="row row-start-xsmall color-row1" >
                   <div class="grid-fourth" >
@@ -170,17 +215,28 @@ Version: 1.2
                     </div>
                   </div>
                   <div class="color-position grid-half">
-                    <span><input type="number" class="inp-range-num" min="0" max="100" ng-model="color.percentage.val" />%</span>
+                    <span>{{color.percentage.val}}%</span>
                   </div>
-                  <div  class="grid-fourth delete">
-                    <a type="button" class="btn-delete icon-cancel-circle" ng-click="layer.current.color.remove($index)"
-                       style="display:{{layer.current.color.display.btnRemove}}"></a>
+                  <div class="grid-fourth delete">
+                    <a type="button"
+                      class="btn-delete icon-cancel-circle"
+                      ng-click="layer.current.color.remove($index)"
+                      style="display:{{layer.current.color.display.btnRemove}}">
+                    </a>
                   </div>
                 </div>
                 <div class="row row-start-xsmall">
-                  <a class="grid-fourth ctrl-range btn-range icon-minus" ng-click="color.percentage.minus($index)"></a>
-                  <input type="range"  class="grid-half   ctrl-range inp-range" min="0" max="100" ng-model="color.percentage.val"/>
-                  <a class="grid-fourth ctrl-range btn-range icon-plus" ng-click="color.percentage.plus($index)"></a>
+                  <a class="grid-fourth ctrl-range btn-range icon-minus"
+                    ng-click="color.percentage.minus($index)"></a>
+
+                  <input type="range"
+                    class="grid-half ctrl-range inp-range"
+                    min="0"
+                    max="100"
+                    ng-model="color.percentage.val" />
+
+                  <a class="grid-fourth ctrl-range btn-range icon-plus"
+                    ng-click="color.percentage.plus($index)"></a>
                 </div>
               </li>
             </ul>
@@ -192,7 +248,7 @@ Version: 1.2
             </div>
           </div>
         </div>
-        <div id="back"  class="back">
+        <div id="back" class="back">
           <div class="code-display">
             <ul>
               <li ng-repeat="bg in cssBg" class="cssBg">

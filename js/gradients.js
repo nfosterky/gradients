@@ -24,7 +24,7 @@ var range = function(spec) {
 			}
 		}
 	};
-}
+};
 
 var color = function color (val, percentage) {
 	return {
@@ -36,6 +36,7 @@ var color = function color (val, percentage) {
 		})
 	};
 };
+
 var layer = function layer (opt) {
 	return {
 		id: opt.id ? opt.id : 0,
@@ -47,7 +48,6 @@ var layer = function layer (opt) {
 		}),
 		isRepeating: opt.isRepeating ? opt.isRepeating : false,
 		isRadial: opt.isRadial ? opt.isRadial : false,
-		gradientDirection: opt.isRadial ? "radial" : "linear",
 		color: {
 			list: opt.colors ? opt.colors : LAYER1_COLORS,
 			display : {
@@ -62,8 +62,9 @@ var layer = function layer (opt) {
 				this.display.btnRemove = (this.list.length > 2) ? "block" : "none";
 			}
 		}
-	}
+	};
 };
+
 var size = function size (val, isPercentage) {
 	var self = range({
 		val: val ? val : 50,
@@ -74,18 +75,25 @@ var size = function size (val, isPercentage) {
 	self.measurement = isPercentage ? "%" : "px";
 	return self;
 };
+
 var defaultLayers = function() {
 		return [
 			layer({
 				id: 0,
-				colors: [color("rgb(200, 200, 255)", 30), color("rgb(10, 0, 100)", 70)],
+				colors: [
+					color("rgb(200, 200, 255)", 30),
+					color("rgb(10, 0, 100)", 70)
+				],
 				angle: 160,
 				isRadial: false,
 				isRepeating: false
 			}),
 			layer({
 				id: 1,
-				colors: [color("rgba(250, 250, 250, 0.3)", 1), color("rgba(0, 0, 0, 0.4)", 100)],
+				colors: [
+					color("rgba(250, 250, 250, 0.3)", 1),
+					color("rgba(0, 0, 0, 0.4)", 100)
+				],
 				isRadial: true,
 				isRepeating: false
 			}),
@@ -95,8 +103,9 @@ var defaultLayers = function() {
 					color("rgba(  0, 255,  22, 0)", 48),
 					color("rgba( 90,  90, 165, 1)", 50),
 					color("rgba(158, 151, 209, 1)", 95),
-					color("rgba(255, 255, 255, 1)", 100)],
-				isRadial: true,
+					color("rgba(255, 255, 255, 1)", 100)
+				],
+				isRadial: false,
 				isRepeating: false
 			}),
 			layer({
@@ -111,7 +120,7 @@ var defaultLayers = function() {
 				isRepeating: true
 			})
 		];
-}
+};
 
 var cache = window.localStorage ? window.localStorage : {};
 var LYR1_CLR1 = "rgba(150,255,255,1)",
@@ -123,7 +132,6 @@ var LYR1_CLR1 = "rgba(150,255,255,1)",
 
 function createGradientPrefixes (lyr, h) {
 	var prefixes = [
-			//"-webkit-gradient(",
 			"-moz-",
 			"-webkit-",
 			"-o-",
@@ -136,31 +144,38 @@ function createGradientPrefixes (lyr, h) {
 
 	for (var i=0; i<len; i++) {
 		bg[i] = (bg[i]) ? bg[i] + gradients[i] : gradients[i];
-		if(lyr.isRepeating) bg[i] += "repeating-";
+		if(lyr.isRepeating) {
+			bg[i] += "repeating-";
+		}
 		bg[i] += lyr.gradientDirection + "-gradient( ";
-		if (lyr.gradientDirection.toLowerCase() === "linear") bg[i] += lyr.angle.val + "deg, ";
+		if (lyr.gradientDirection.toLowerCase() === "linear") {
+			bg[i] += lyr.angle.val + "deg, ";
+		}
 		bg[i] += strLstColors+")";
-		if (h !== 0) bg[i] += ",";
-		else bg[i] += ";";
+		if (h !== 0) {
+			bg[i] += ",";
+		} else bg[i] += ";";
 	}
 	return bg;
 
-};
+}
 
 function createGradient(colors) {
-	var color = ""
-		strLstColors = "",
-		strColor = "";
+	var color = "",
+			strLstColors = "",
+			strColor = "",
+			len = colors.length;
 
-	len = colors.length;
 	for (var i=0; i<len; i++) {
 		color = colors[i];
 		strColor = color.val + " " + color.percentage.val + "%";
-		if (i+1!==len) strColor += ","
+		if (i+1!==len) {
+			strColor += ",";
+		}
 		strLstColors += strColor;
 	}
 	return strLstColors;
-};
+}
 
 function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -174,10 +189,10 @@ function rand_color() {
 				g: getRandomInt(min, max),
 				b: getRandomInt(min, max),
 				o: Math.random().toFixed(2)
-			}
+			};
 
 	return color;
-};
+}
 
 app.directive('uiColorpicker', function() {
 		return {
@@ -187,8 +202,8 @@ app.directive('uiColorpicker', function() {
 			replace: true,
 			template: "<span><input type='color' class='input-small' /></span>",
 			link: function(scope, element, attrs, ngModel) {
-				var input = element.find('input');
-				var options = angular.extend({
+				var input = element.find('input'),
+						options = angular.extend({
 							color: ngModel.$viewValue,
 							move: function(color) {
 								scope.$apply(function() {
@@ -211,7 +226,7 @@ app.directive('uiColorpicker', function() {
 
 app.controller('ColorCtrl', function($scope) {
 	// display options
-	$scope.display = "inline-block";
+	$scope.btnCssVisibility = "visible";
 	$scope.isVisible = false;
 	$scope.displayAngleControl = "block";
 
@@ -219,7 +234,6 @@ app.controller('ColorCtrl', function($scope) {
 		$scope.layer.list = [];
 		$scope.layer.list = defaultLayers();
 		$scope.layer.change(0);
-
 		$scope.size = size(75, false);
 	};
 
@@ -232,46 +246,43 @@ app.controller('ColorCtrl', function($scope) {
 		display: {
 			btnRemove: "none"
 		},
-		add : function() {
+		add: function() {
 			var newIndex = this.list.length;
 
 			this.list[newIndex] = layer({
-															id: newIndex,
-															colors: [
-																color("rgba(  0, 255, 22, 0.3)", 50),
-																color("rgba(246, 255,  0, 0.4)", 51)
-															],
-															angle: 225
-														});
+				id: newIndex,
+				colors: [
+					color("rgba(  0, 255, 22, 0.3)", 50),
+					color("rgba(246, 255,  0, 0.4)", 51)
+				],
+				angle: 225
+			});
 			this.change(newIndex);
 		},
-		remove : function() {
-			console.log(this.current.index);
+		remove: function() {
 			var index = $scope.layer.current.index,
 				newIndex = (index === 0) ? 0 : index - 1;
 
 			this.list.splice(index, 1);
 			this.change(newIndex);
 		},
-		change : function(index) {
+		change: function(index) {
 			this.current = this.list[index];
 			this.current.index = index;
-			console.log(index);
-			this.display.btnRemove = (this.list.length > 1) ? "block" : "none";
+			this.display.btnRemove = this.list.length > 1 ? "block" : "none";
  		}
 	};
 
 	$scope.init = function () {
-		if (cache["saved"] &&
-				cache["saved"].length > 0) {
-			var saved = JSON.parse(cache["saved"]),
-					list  = saved.list,
-					len   = list.length,
+		if (cache.saved && cache.saved.length) {
+			var saved = JSON.parse(cache.saved),
+					list = saved.list,
+					len = list.length,
 					colors = [],
 					colorObjs = [];
 
 			for (var i=0; i<len; i++) {
-				colors = list[i].color.list,
+				colors = list[i].color.list;
 				l = colors.length;
 				colorObjs = [];
 
@@ -280,17 +291,16 @@ app.controller('ColorCtrl', function($scope) {
 				}
 
 				$scope.layer.list[i] = layer({
-						id: i,
-						colors: colorObjs,
-						angle: list[i].angle.val,
-						isRepeating : list[i].isRepeating,
-						isRadial : list[i].isRadial
+					id: i,
+					colors: colorObjs,
+					angle: list[i].angle.val,
+					isRepeating : list[i].isRepeating,
+					isRadial : list[i].isRadial
 				});
 			}
 
 			$scope.size = size(saved.size.val, saved.size.isPercentage);
 		} else {
-			// need to loop through layers
 			$scope.layer.list = defaultLayers();
 		}
 
@@ -298,37 +308,38 @@ app.controller('ColorCtrl', function($scope) {
 	};
 
 	$scope.saveToCache = function() {
-		cache["saved"] = JSON.stringify({
+		cache.saved = JSON.stringify({
 			list: $scope.layer.list,
 			size: $scope.size
 		});
-		// console.log(cache["saved"]);
 	};
 
 	// 	size measurement is percentage or px
 	$scope.$watch(function() {
 		var s = $scope.size;
-		s.measurement = (s.isPercentage) ? "%" : "px";
+
+		s.measurement = s.isPercentage ? "%" : "px";
 		return	s.val + s.measurement + " " + s.val + s.measurement + ";";
 	},function(opt) {
 		$scope.bgSize = opt;
 		$scope.saveToCache();
 	});
 
+	// radial / linear control
 	$scope.$watch(function() {
 		var l = $scope.layer.current;
-		l.gradientDirection  = (l.isRadial) ? "Radial" : "Linear";
-		$scope.iconDirection = (l.isRadial) ? "icon-radio-checked" : "icon-menu";
-		$scope.displayAngleControl  = (l.isRadial) ? "none" : "block";
+
+		l.gradientDirection  = l.isRadial ? "Radial" : "Linear";
+		$scope.iconDirection = l.isRadial ? "icon-radio-checked" : "icon-menu";
+		$scope.displayAngleControl  = l.isRadial ? "none" : "block";
 		return l.gradientDirection;
 	},function(name) {
-		console.log(name);
 		$scope.nameDirection = name;
 	});
 
 	// display: btn isRepeating
 	$scope.$watch(function() {
-		return ($scope.layer.current.isRepeating) ? "Repeating - On" : "Repeating - Off";
+		return $scope.layer.current.isRepeating ? "Repeating - On" : "Repeating - Off";
 	},function(name) {
 		$scope.nameRepeating = name;
 	});
@@ -339,10 +350,12 @@ app.controller('ColorCtrl', function($scope) {
 		if ($scope.isVisible) {
 			$scope.iconDisplay = "icon-caret-up";
 			$scope.display = "inline-block";
+			$scope.btnCssVisibility = "visible";
 			name = "Close";
 		} else {
 			$scope.iconDisplay = "icon-caret-down";
 			$scope.display = "none";
+			$scope.btnCssVisibility = "hidden";
 			name = "Open";
 		}
 		return name;
@@ -352,23 +365,22 @@ app.controller('ColorCtrl', function($scope) {
 
 	// display: create gradient from layer and add to display
 	$scope.$watch(function() {
-		var color = ""
-			strColor = "",
-			strLstColors = "",
-			len = 0,
-			prefixLayer = [],
-			bg = [],
-			gradients = [
-					//"-webkit-gradient(",
+		var color = "",
+				strColor = "",
+				strLstColors = "",
+				len = 0,
+				prefixLayer = [],
+				bg = [],
+				gradients = [
 					"-moz-",
 					"-webkit-",
 					"-o-",
 					"-ms-",
 					""
-			];
-
-		var lyr = {},
+				],
+				lyr = {},
 				l = "";
+
 		for (var h=$scope.layer.list.length-1; h>=0; h--) {
 			lyr = $scope.layer.list[h];
 			strLstColors = createGradient(lyr.color.list);
@@ -378,19 +390,25 @@ app.controller('ColorCtrl', function($scope) {
 			// loop through different browser css prefixes
 			for (var i=0; i<len; i++) {
 				l = gradients[i];
-				if(lyr.isRepeating) l += "repeating-";
+				if (lyr.isRepeating) {
+					l += "repeating-";
+				}
 				l += lyr.gradientDirection + "-gradient( ";
-				if (lyr.gradientDirection.toLowerCase() === "linear") l += lyr.angle.val + "deg, ";
+				if (lyr.gradientDirection.toLowerCase() === "linear") {
+					l += lyr.angle.val + "deg, ";
+				}
 				l += strLstColors+")";
 				prefixLayer[i] = l + ";";
-				if (h !== 0) l += ",\n";
-				else l += ";";
-
+				if (h) {
+					l += ",\n";
+				} else {
+					l += ";";
+				}
 				bg[i] = (bg[i]) ? bg[i] + l : l;
 			}
 			$scope.layer.list[h].gradient = prefixLayer.join("background: ");
 		}
-		console.log(bg);
+
 		$scope.cssBg = bg;
 		return bg.join("background: ");
 	}, function(bgImage) {
