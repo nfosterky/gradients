@@ -132,6 +132,38 @@ a {
 
 .controls {
 	background: rgb(30,30,30);
+	overflow: scroll;
+}
+
+
+@media (min-height: 10rem) {
+	.viewport, .controls {
+		height: 5rem;
+	}
+}
+
+@media (min-height: 15rem) {
+	.viewport, .controls {
+		height: 7.5rem;
+	}
+}
+
+@media (min-height: 30rem) {
+	.viewport, .controls {
+		height: 15rem;
+	}
+}
+
+@media (min-height: 40rem) {
+	.viewport, .controls {
+		height: 20rem;
+	}
+}
+
+@media (min-height: 50rem) {
+	.viewport, .controls {
+		height: 25rem;
+	}
 }
 
 .button {
@@ -228,11 +260,12 @@ a {
 }
 
 .btn-delete-layer, .btn-delete-layer:hover  {
-	color: rgb(200, 200, 200);
+	color: rgb(30, 30, 30);
 	display: block;
-	text-shadow: 0px 1px rgba(0, 0, 0, 0.57), 0px -1px rgba(255, 255, 255, 0.5);
 	font-size: 1.5rem;
-	margin-top: .25rem;
+	margin-right: .5rem;
+	text-align: right;
+	text-shadow: 0px -1px rgba(0, 0, 0, 0.8), 0px 1px rgba(255, 255, 255, 0.5);
 }
 
 .cssBg {
@@ -320,6 +353,8 @@ a {
 .row {
 	margin: auto !important;
 }
+
+
 
 /* end flipper */
 
