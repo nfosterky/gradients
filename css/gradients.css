@@ -143,26 +143,38 @@ a {
 }
 
 @media (min-height: 15rem) {
-	.viewport, .controls {
+	.viewport {
 		height: 7.5rem;
+	}
+	.controls {
+		height: 10rem;
 	}
 }
 
 @media (min-height: 30rem) {
-	.viewport, .controls {
+	.viewport {
 		height: 15rem;
 	}
-}
-
-@media (min-height: 40rem) {
-	.viewport, .controls {
+	.controls {
 		height: 20rem;
 	}
 }
 
+@media (min-height: 40rem) {
+	.viewport {
+		height: 20rem;
+	}
+	.controls {
+		height: 26.4rem;
+	}
+}
+
 @media (min-height: 50rem) {
-	.viewport, .controls {
+	.viewport {
 		height: 25rem;
+	}
+	.controls {
+		height: 33rem;
 	}
 }
 
