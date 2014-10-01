@@ -110,12 +110,13 @@ a {
 }
 
 .layers {
+	margin-top: .5rem;
 	overflow-x: scroll;
 	white-space: nowrap;
 }
 
 .layer-tabs {
-	margin: .5em 0;
+
 }
 
 .layer-tab {
@@ -130,8 +131,13 @@ a {
 	border-color: white black black white;
 }
 
+.controls-frame {
+	padding-top: 1rem;
+	background: rgb(30, 30, 30);
+}
+
 .controls {
-	background: rgb(30,30,30);
+	background: rgba(30,30,30, 1);
 	overflow: scroll;
 }
 
@@ -363,7 +369,8 @@ a {
 }
 
 .row {
-	margin: auto !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 }
 
 
